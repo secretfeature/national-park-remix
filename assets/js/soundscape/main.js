@@ -16,25 +16,25 @@ window.addEventListener( "load", function( event ) {
   let
   audioFilesLoadedCount = 0;
 
-  audioMap.set( 0, {
-    url: "assets/audio/dawn001.wav",
-    duration: beatDuration,
-    playbackSpeed: 1,
-    loop: true,
-    loopStart: beatDuration * .25,
-    loopEnd: beatDuration * .5,
-    buffer: null
-  })
-
-  audioMap.set( 1, {
-    url: "assets/audio/bears001.wav",
-    duration: beatDuration,
-    playbackSpeed: 1,
-    loop: true,
-    loopStart: beatDuration * .05,
-    loopEnd: beatDuration * .25,
-    buffer: null
-  })
+  audioMap
+    .set( 0, {
+      url: "assets/audio/dawn001.wav",
+      duration: beatDuration,
+      playbackSpeed: 1,
+      loop: true,
+      loopStart: beatDuration * .25,
+      loopEnd: beatDuration * .5,
+      buffer: null
+    })
+    .set( 1, {
+      url: "assets/audio/bears001.wav",
+      duration: beatDuration,
+      playbackSpeed: 1,
+      loop: true,
+      loopStart: beatDuration * .05,
+      loopEnd: beatDuration * .25,
+      buffer: null
+    })
     .forEach( function( item, index ) {
       XHR.makeRequest( item.url )  
         .then( function( result ) {
@@ -43,9 +43,9 @@ window.addEventListener( "load", function( event ) {
               audioMap.get( index ).buffer = decodedData;
               start();
             })
-            .catch(function(error) { console.log(error); });
+            .catch(function(error) { console.log( error ); });
         })
-        .catch(function(error) { console.log(error) });  
+        .catch(function(error) { console.log( error ) });  
     });
 
   function start() {
@@ -62,7 +62,7 @@ window.addEventListener( "load", function( event ) {
       setInterval( function() {
         bufferPlayer.start( item1.buffer, audioContext.currentTime, .5, .1, 0, 2, true, item1.loopStart, item1.loopEnd );
       }, 1000)
-      
+
       setInterval( function() {
         bufferPlayer.start( item2.buffer, audioContext.currentTime, 1, 0, 0, 2, true, item2.loopStart, item2.loopEnd );
       }, 3000)
