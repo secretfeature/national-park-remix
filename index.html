@@ -3,12 +3,64 @@
 <html>
   <head>
     <title>Soundscape</title>
-    <script src="assets/js/utils/XHR.js"></script>
+    <script src="assets/js/vendor/jquery.min.js"></script>
+
     <script src="assets/js/audioModules/AudioBufferPlayer.js"></script>
-    <script src="assets/js/soundscape/main.js"></script>
+    <script src="assets/js/audioModules/ADSREnvelope.js"></script>
+    <script src="assets/js/utils/AudioBufferLoader.js"></script>
+    <script src="assets/js/audioModules/Reverb.js"></script>
+    <script src="assets/js/soundscape/SoundscapeVoice1.js"></script>
+    <script src="assets/js/soundscape/Soundscape1.js"></script>
+    <script src="assets/js/soundscape/main2.js"></script>
+    <style>
+      body {
+        background-color: #000;
+      }
+
+      .status-button{
+        font-size:50px;
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+        font-weight: 700;
+        display: block;
+        width:100%;
+        position: absolute;
+        top:50%;
+        text-align: center;
+        margin-top: -25px;
+      }
+
+      .starting {
+        color:#933;
+        cursor: pointer;
+      }
+
+      .starting::after { 
+          content: "START";
+      }
+
+      .loading {
+        color:#CCC;
+        cursor: default;
+      }
+
+      .loading::after { 
+          content: "LOADING AUDIO...";
+      }
+
+      .ready {
+        color:#933;
+        cursor: pointer;
+      }
+
+      .ready::after { 
+          content: "PLAY";
+      }
+    </style>
   </head>
 
   <body>
-    <div id="content"></div>
+    <div id="content">
+        <span class="status-button"></span>
+    </div>
   </body>
 </html>

@@ -2,8 +2,6 @@ class XHR {
   static makeRequest(url) {
     "use strict";
 
-    console.log(url);
-
     return new Promise(function (resolve, reject) {
       let xhr = new XMLHttpRequest();
       xhr.open("GET", url, true );
