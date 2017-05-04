@@ -5,7 +5,7 @@ class Soundscape1 {
     this.audioContext = options.audioContext;
     this.bufferMap = options.bufferMap;
 
-    this.bpm = 10;
+    this.bpm = 60;
     this.beatDuration = 60 / this.bpm;
     
     this.audioBufferPlayer = new AudioBufferPlayer( {

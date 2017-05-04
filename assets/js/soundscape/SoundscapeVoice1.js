@@ -67,7 +67,7 @@ class SoundscapeVoice1 {
     let
     bufferSource = this.audioBufferPlayer.start( buffer, this.audioContext.currentTime, offset, 2000, true, loopStart, loopEnd );
 
-    bufferSource.playbackRate.value = Math.ceil( Math.random() * 4 ) / Math.ceil( Math.random() * 4 );
+    bufferSource.playbackRate.value = Math.ceil( Math.random() * 4 ) / Math.ceil( Math.random() * 4 ) / Math.ceil( Math.random() * 4 );
 
     //won't work on some browsers (safari and mobile)
     // this.lfo.connect( bufferSource.playbackRate );
