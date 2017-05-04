@@ -8,44 +8,64 @@ class ADSREnvelope {
     this.sustain = options.sustain || 0;
     this.release = options.release || 1;
 
+    this.paramMap = new Map();
+
   }
 
   trigger( time = this.audioContext.currentTime ) {
 
-    this.param.cancelScheduledValues( time );
 
-    this.param.setValueAtTime( this.param.value, time );
+    // console.log( this.param.value )
 
-    //attack
-    this.param.linearRampToValueAtTime( 1.0, time + this.attack );
+    this.paramMap.forEach( ( param ) => {
 
-    //decay
-    this.param.linearRampToValueAtTime( this.sustain, time + this.attack + this.decay );
+      //pin value
+      // param.cancelAndHoldAtTime( time );
 
-    //release
-    this.param.linearRampToValueAtTime( 0.0, time + this.release );
+      param.cancelScheduledValues( time );
+
+      param.setValueAtTime( 0, time );
+
+      //attack
+      param.linearRampToValueAtTime( 1.0, time + this.attack );
+
+      //decay
+      param.exponentialRampToValueAtTime( this.sustain, time + this.attack + this.decay );
+
+      //release
+      param.linearRampToValueAtTime( 0.0, time + this.attack + this.decay + this.release );
+
+    } );
+
+    
 
   }
 
   stop( time = this.audioContext.currentTime ) {
 
-    this.param.cancelScheduledValues( time );
+    // this.param.cancelScheduledValues( time );
 
-    //release
-    this.param.setValueAtTime( this.param.value, time );
-    this.param.linearRampToValueAtTime( 0.0, time + this.release );
+    this.paramMap.forEach( ( param ) => {
+
+      //release
+      // param.cancelAndHoldAtTime( param.value, time );
+
+      param.setValueAtTime( 0, time );
+      param.linearRampToValueAtTime( 0.0, time + this.release );
+
+    } );
 
   }
 
   connect( param ) {
 
-    this.param = param;
+    this.paramMap.set( this.paramMap.size, param );
 
   }
 
-  disconnect() {
+  disconnect( param ) {
 
-    this.param.cancelScheduledValues( this.audioContext.currentTime );
+    param.cancelScheduledValues( this.audioContext.currentTime );
 
   }
 

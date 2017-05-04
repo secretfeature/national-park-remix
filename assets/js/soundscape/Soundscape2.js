@@ -5,7 +5,7 @@ class Soundscape1 {
     this.audioContext = options.audioContext;
     this.bufferMap = options.bufferMap;
 
-    this.bpm = 10;
+    this.bpm = 20;
     this.beatDuration = 60 / this.bpm;
     
     this.audioBufferPlayer = new AudioBufferPlayer( {
@@ -40,12 +40,9 @@ class Soundscape1 {
     this.masterGain.connect( this.compressor );
     this.compressor.connect( this.audioContext.destination );
 
-    this.triggerInterval = this.beatDuration * 2;
-    this.nextTrigger = 0;
-
     //create voices
     this.voiceMap = new Map();
-    this.voiceCount = 10;
+    this.voiceCount = 7;
     this.currentVoiceIndex = 0;
 
     for( var i = 0; i < this.voiceCount; i++ ) {
@@ -77,42 +74,29 @@ class Soundscape1 {
       totalMeasures: 4
     } );
 
-    // this.sequenceGenerator.generateBeat();
-    // this.sequenceGenerator.startBeat( 0.1, false );
+    this.sequenceGenerator.generateBeat();
+    this.sequenceGenerator.startBeat( 0.1, false );
 
-    $("body").on( "mousedown touchend", () => {
+    // $("body").on( "mousedown touchend", () => {
 
-        if ( !this.playing ) {
+    //     if ( !this.playing ) {
 
-          // alert("playing");
+    //       // alert("playing");
 
-          this.playing = true;
+    //       this.playing = true;
           
-          let voice = this.voiceMap.get( this.currentVoiceIndex );
+    //       setInterval( () => {
 
-          this.nextTriggerTime = this.audioContext.currentTime;
-          voice.trigger( 1, this.nextTriggerTime );
-          
-          setInterval( () => {
-
-            if ( this.audioContext.currentTime > this.nextTriggerTime ) {
-
-              this.currentVoiceIndex = ( this.currentVoiceIndex + 1 ) % 6;
-
-              this.nextTriggerTime += this.triggerInterval;
-
-              voice = this.voiceMap.get( this.currentVoiceIndex );
+    //         this.currentVoiceIndex = ( this.currentVoiceIndex + 1 ) % 6;
     
-              voice.trigger( 1, this.nextTriggerTime );
+    //         let voice = this.voiceMap.get( this.currentVoiceIndex );
+    
+    //         voice.trigger( 1, this.audioContext.currentTime );
 
-              console.log( "trigger", this.nextTriggerTime, this.currentVoiceIndex )
+    //       }, 3000 );
 
-            }
-
-          }, ( this.beatDuration * 1000 ) * .25 );
-
-        }
-    });
+    //     }
+    // });
 
   }
 
