@@ -18,7 +18,7 @@ class SoundscapeVoice1 {
     this.filter.connect( this.output ); 
 
     this.highPassFilter = this.audioContext.createBiquadFilter();
-    this.highPassFilter.frequency.value = this.filter.frequency.maxValue * .5; 
+    this.highPassFilter.frequency.value = 22050 * .5; 
     this.highPassFilter.Q.value = 5;
     this.highPassFilter.connect( this.output );
 
@@ -27,6 +27,8 @@ class SoundscapeVoice1 {
     this.lfo.connect( this.highPassFilter.frequency );
     this.lfo.type = "sawtooth";
     this.lfo.start();
+
+    this.lfo.connect( this.highPassFilter.frequency );
 
     this.envelope = new ADSREnvelope( { 
       audioContext: options.audioContext,
@@ -42,7 +44,7 @@ class SoundscapeVoice1 {
       audioContext: options.audioContext,
       attack:  this.beatDuration * 4,
       decay: this.beatDuration * 3,
-      sustain: this.filter.frequency.maxValue,
+      sustain: 22050,
       release: this.beatDuration * 4
     } );
 
@@ -51,11 +53,13 @@ class SoundscapeVoice1 {
 
   }
 
-  trigger( amp, time ) {
+  trigger( time ) {
 
-    // this.audioBufferPlayer.stop( this.bufferSource );
-    if( this.bufferSource )
+    if( this.bufferSource ){
+
       this.audioBufferPlayer.stop( this.bufferSource );
+   
+    }
 
     let
     buffer = this.bufferMap.get( Math.floor( Math.random() * this.bufferMap.size ) ),
@@ -64,30 +68,37 @@ class SoundscapeVoice1 {
     loopEnd = loopStart + ( this.beatDuration * .5 ) / Math.ceil( Math.random() * 4 );
 
     //buffer, time, offset, duration, loop, loopStartTime, loopEndTime
-    let
-    bufferSource = this.audioBufferPlayer.start( buffer, this.audioContext.currentTime, offset, 2000, true, loopStart, loopEnd );
+    this.bufferSource = this.audioBufferPlayer.start( buffer, this.audioContext.currentTime, offset, 2000, true, loopStart, loopEnd );
 
-    bufferSource.playbackRate.value = Math.ceil( Math.random() * 4 ) / Math.ceil( Math.random() * 4 ) / Math.ceil( Math.random() * 4 );
+    this.bufferSource.playbackRate.value = Math.ceil( Math.random() * 4 ) / Math.ceil( Math.random() * 4 ) / Math.ceil( Math.random() * 4 );
 
     //won't work on some browsers (safari and mobile)
     // this.lfo.connect( bufferSource.playbackRate );
 
-    bufferSource.connect( this.filter );
-    bufferSource.connect( this.highPassFilter );
+    this.bufferSource.connect( this.filter );
+    this.bufferSource.connect( this.highPassFilter );
 
     this.envelope.trigger( time );
     this.filterEnvelope.trigger( time );
-    this.lfo.connect( this.highPassFilter.frequency );
-
-    this.bufferSource = bufferSource;
-
-    return bufferSource;
 
   }
 
-  untrigger( bufferSource ) {
+  untrigger() {
 
-    this.audioBufferPlayer.stop( bufferSource );
+    if( this.bufferSource ){
+
+      // this.lfo.disconnect( this.bufferSource.playbackRate );
+      this.audioBufferPlayer.stop( this.bufferSource );    
+
+    }
+
+    this.envelope.stop();
+    this.filterEnvelope.stop();
+
+    this.output.gain.value = 0;
+    this.filter.frequency.value = 0;
+    this.filter.frequency.value = 0;
+    this.highPassFilter.frequency.value = 22050 * .5; 
 
   }
 

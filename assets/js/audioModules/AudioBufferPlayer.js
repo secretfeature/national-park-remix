@@ -4,7 +4,7 @@ class AudioBufferPlayer {
 
     this.audioContext = options.audioContext;
 
-    this.bufferSourceMap = {};
+    this.bufferSourceMap = new Map();
     this.bufferSourceId = -1;
 
   }
@@ -44,28 +44,39 @@ class AudioBufferPlayer {
     
   }
 
-
-
   createEndHandler( bufferSource ) {
 
     return () => this.stop( bufferSource );
 
   }
 
-
-  
-
   stop( bufferSource ){
 
-    if ( this.bufferSourceMap[ bufferSource ] && ( ( this.audioContext.currentTime - bufferSource.startTime ) > 0.01 ) ) {
+    if ( this.bufferSourceMap.get( bufferSource ) && ( ( this.audioContext.currentTime - bufferSource.startTime ) > 0.01 ) ) {
 
       bufferSource.stop( this.audioContext.currentTime );
 
       bufferSource.disconnect();
-
-      delete this.bufferSourceMap[ bufferSource ];
+ 
+      this.bufferSourceMap.delete( bufferSource );
 
     }
+
+  }
+
+  clearBuffers() {
+
+    this.bufferSourceMap.forEach( function( bufferSource ) {
+      
+      bufferSource.stop( this.audioContext.currentTime );
+
+      bufferSource.disconnect();
+ 
+      this.bufferSourceMap.delete( bufferSource );
+
+    } ); 
+
+    console.log( this.bufferSourceMap )
 
   }
 

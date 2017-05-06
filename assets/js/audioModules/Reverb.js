@@ -19,7 +19,6 @@ class Reverb {
     AudioBufferLoader.load( urls, this.audioContext )
       .then( ( buffers ) => {
         this.convolver.buffer = buffers.get( 0 );
-        console.log(this.convolver, buffers)
       } )
       .catch( ( error ) => console.log( error ) );
   }

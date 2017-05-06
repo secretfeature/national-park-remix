@@ -1,11 +1,11 @@
-class Soundscape1 {
+class Soundscape2 {
   
   constructor( options ) {
 
     this.audioContext = options.audioContext;
     this.bufferMap = options.bufferMap;
 
-    this.bpm = 20;
+    this.bpm = 100;
     this.beatDuration = 60 / this.bpm;
     
     this.audioBufferPlayer = new AudioBufferPlayer( {
@@ -40,9 +40,12 @@ class Soundscape1 {
     this.masterGain.connect( this.compressor );
     this.compressor.connect( this.audioContext.destination );
 
+    this.triggerInterval = this.beatDuration * 2;
+    this.nextTrigger = 0;
+
     //create voices
     this.voiceMap = new Map();
-    this.voiceCount = 7;
+    this.voiceCount = 10;
     this.currentVoiceIndex = 0;
 
     for( var i = 0; i < this.voiceCount; i++ ) {
@@ -62,41 +65,54 @@ class Soundscape1 {
 
     this.playing = false;
 
-    this.songDuration = 60 * 4;
+  }
 
-    this.measureDuration = this.beatDuration * 16;
+  start() {
 
-    this.sequenceGenerator = new SequenceGenerator( {
-      audioContext: this.AudioContext,
-      bpm: this.bpm,
-      voiceMap: this.voiceMap,
-      beatsPerMeasure: 16,
-      totalMeasures: 4
+    this.stop();
+
+    this.playing = true;
+    
+    let voice = this.voiceMap.get( this.currentVoiceIndex );
+
+    this.nextTriggerTime = this.audioContext.currentTime;
+    voice.trigger( 1, this.nextTriggerTime );
+    
+    this.interval = setInterval( () => {
+
+      if ( this.audioContext.currentTime > this.nextTriggerTime ) {
+
+        this.currentVoiceIndex = ( this.currentVoiceIndex + 1 ) % 6;
+
+        this.nextTriggerTime += this.triggerInterval;
+
+        voice = this.voiceMap.get( this.currentVoiceIndex );
+
+        voice.trigger( this.nextTriggerTime );
+
+      }
+
+    }, ( this.beatDuration * 1000 ) * .25 );
+
+  }
+
+  stop() {
+
+    this.playing = false;
+
+    if( this.interval ) {
+
+      clearInterval( this.interval );
+    
+    }
+
+    this.voiceMap.forEach( function( voice ) {
+
+      voice.untrigger();
+
     } );
 
-    this.sequenceGenerator.generateBeat();
-    this.sequenceGenerator.startBeat( 0.1, false );
-
-    // $("body").on( "mousedown touchend", () => {
-
-    //     if ( !this.playing ) {
-
-    //       // alert("playing");
-
-    //       this.playing = true;
-          
-    //       setInterval( () => {
-
-    //         this.currentVoiceIndex = ( this.currentVoiceIndex + 1 ) % 6;
-    
-    //         let voice = this.voiceMap.get( this.currentVoiceIndex );
-    
-    //         voice.trigger( 1, this.audioContext.currentTime );
-
-    //       }, 3000 );
-
-    //     }
-    // });
+    this.audioBufferPlayer.clearBuffers();
 
   }
 

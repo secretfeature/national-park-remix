@@ -49,9 +49,11 @@ class ADSREnvelope {
 
       //release
       // param.cancelAndHoldAtTime( param.value, time );
+      // param.linearRampToValueAtTime( 0.0, time + this.release );
+
+      param.cancelScheduledValues( time );
 
       param.setValueAtTime( 0, time );
-      param.linearRampToValueAtTime( 0.0, time + this.release );
 
     } );
 

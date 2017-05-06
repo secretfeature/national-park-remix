@@ -2,67 +2,101 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Soundscape</title>
+    <title>Remix The National Park Service</title>
+
     <script src="assets/js/vendor/jquery.min.js"></script>
 
-    <script src="assets/js/audioModules/AudioBufferPlayer.js"></script>
     <script src="assets/js/audioModules/ADSREnvelope.js"></script>
+    <script src="assets/js/audioModules/AudioBufferPlayer.js"></script>
     <script src="assets/js/utils/AudioBufferLoader.js"></script>
     <script src="assets/js/audioModules/Reverb.js"></script>
-    <script src="assets/js/audioModules/SequenceGenerator.js"></script>
-    <script src="assets/js/ui/VoiceEditor.js"></script>
-    <script src="assets/js/soundscape/SoundscapeVoice1.js"></script>
+
+    <script src="assets/js/soundscape/main.js"></script>
+
+
     <script src="assets/js/soundscape/Soundscape1.js"></script>
-    <script src="assets/js/soundscape/main2.js"></script>
-    <style>
-      body {
-        background-color: #000;
-      }
+    <script src="assets/js/soundscape/Soundscape2.js"></script>
 
-      .status-button{
-        font-size:50px;
-        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-        font-weight: 700;
-        display: block;
-        width:100%;
-        position: absolute;
-        top:50%;
-        text-align: center;
-        margin-top: -25px;
-      }
+    <script src="assets/js/soundscape/SoundscapeVoice1.js"></script>
 
-      .starting {
-        color:#933;
-        cursor: pointer;
-      }
 
-      .starting::after { 
-          content: "START";
-      }
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,500,700" rel="stylesheet">
+    <link href="assets/css/styles.css" rel="stylesheet">
+    
+    <script type="text/javascript">
 
-      .loading {
-        color:#CCC;
-        cursor: default;
-      }
+      window.addEventListener( "load", function( event ) {
 
-      .loading::after { 
-          content: "LOADING AUDIO...";
-      }
+        addEntry( {
+          title:"filter-loops-for-yellowstone-001",
+          SoundscapeClass: Soundscape1,
+          audio: [
+            "assets/audio/bears001.wav",
+            "assets/audio/dawn001.wav",
+            "assets/audio/cranes001.wav",
+            "assets/audio/yell-ChorusFrogs.mp3",
+            "assets/audio/yell-DipperandGeeseFireholeRiver.mp3"
+          ]
+        } );
 
-      .ready {
-        color:#933;
-        cursor: pointer;
-      }
+        addEntry( {
+          title:"filter-loops-for-yellowstone-002",
+          SoundscapeClass: Soundscape2,
+          audio: [
+            "assets/audio/yell-YELLSGYredsquirrel2004320.mp3",
+            "assets/audio/yell-YELLCoyotes150315.mp3"
+          ]
+        } );
+      
+      } );
 
-      .ready::after { 
-          content: "PLAY";
-      }
-    </style>
+    </script>
+
   </head>
 
   <body>
-    <div id="content">
-        <span class="status-button"></span>
+    <div id="header">
     </div>
+    <div id="content">
+        <div class="about">
+          <h1>Remix The National Park Service</h1>
+          Recent National Park Service policy shifts risk conversion to private land, relaxed environmental protection and inhumane hunting practices.The National Park Service hosts a <a href="https://www.nps.gov/yell/learn/photosmultimedia/soundlibrary.htm">library of public domain media</a> that's free to download and repurpose. Lets discover the hidden rhythms and textures found in these recordings with JavaScript and the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API">Web Audio API</a>. We will transform the sounds of animals, natural phenomenon and park visitors into soundscapes that feature the parks' diversity and highlight the importance of wildlife conservation.
+        </div>
+
+        <div class="entry" id="filter-loops-for-yellowstone-001">
+          <h2>Filtered Loops For Yellowstone Part 1</h2>
+          <h3>by <a href="https://twitter.com/rayreadyray">Ray McClure</a></h3>
+          <div class="credits">Featuring:
+              <ul>
+                <li>Grizzly Bear (vocalizations) by NPS/Dan Bergum</li>
+                <li>Sandhill Cranes by NPS &amp; MSU Acoustic Atlas/Jennifer Jerrett</li>
+                <li>Dawn Chorus by NPS/Jennifer Jerrett</li>
+                <li>Boreal Chorus Frogs by NPS/Neal Herbert</li>
+                <li>Dipper and Geese by NPS &amp; MSU Acoustic Atlas / Jennifer Jerrett</li>
+              </ul>
+          </div>
+          <div class="player">
+            <a href="#" class="play button" title="Play">Play</a>
+            <canvas class="waveform" width="200" height="40"></canvas>
+          </div>
+        </div>
+
+        <div class="entry" id="filter-loops-for-yellowstone-002">
+          <h2>Chatter and Howl</h2>
+          <h3>by <a href="https://twitter.com/rayreadyray">Ray McClure</a></h3>
+          <div class="credits">Featuring:
+              <ul>
+                <li>Red Squirrel by NPS / Shan Burson</li>
+                <li>Wolves by NPS &amp; MSU Acoustic Atlas/Jennifer Jerrett</li>
+              </ul>
+          </div>
+          <div class="player">
+            <a href="#" class="play button" title="Play">Play</a>
+            <canvas class="waveform" width="200" height="40"></canvas>
+          </div>
+        </div>
+
+    </div>
+    
   </body>
 </html>
