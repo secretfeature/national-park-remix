@@ -43,6 +43,16 @@ window.addEntry = function( obj ) {
     
     return function( event ) {
 
+      event.stopPropagation();
+      event.preventDefault();
+
+      if ( !window.webAudioStarted ) {
+        let osc = audioContext.createOscillator();
+        osc.start( 0 );
+        osc.stop(0);
+        window.webAudioStarted = true;        
+      }
+
       $("body").find(".playing").removeClass("playing");
 
       window.requestedSoundscape = obj.title;
@@ -54,7 +64,7 @@ window.addEntry = function( obj ) {
         $playButton.removeClass("playing");
 
         window.soundscape.stop();
-        window.soundscape.masterGain.disconnect( analyser );
+        window.soundscape.masterGain.disconnect();
 
         resetWaveform( ctx );
 
@@ -86,9 +96,6 @@ window.addEntry = function( obj ) {
       obj.audio.forEach( function( item, i ){
         audioURLs.set( i, item );
       } );
-
-      event.stopPropagation();
-      event.preventDefault();
 
       $playButton
         .removeClass("starting")

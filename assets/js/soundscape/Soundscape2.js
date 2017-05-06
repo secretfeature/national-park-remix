@@ -5,30 +5,38 @@ class Soundscape2 {
     this.audioContext = options.audioContext;
     this.bufferMap = options.bufferMap;
 
+    //set beats per minute and save duration of a single beat
     this.bpm = 100;
     this.beatDuration = 60 / this.bpm;
     
+    //create instance of audio buffer player for creating instances of and playing sounds
     this.audioBufferPlayer = new AudioBufferPlayer( {
       audioContext: this.audioContext
     } );
 
+    //create convolution reverb with impulse response .wav file
     this.reverb = new Reverb( {
       audioContext: this.audioContext,
       url: "assets/audio/impulses/space.wav"
     } );
 
-    this.masterGain = this.audioContext.createGain();
+    //Setup audio bus
 
+    //Create Master Gain. Connects to compressor.
+    this.masterGain = this.audioContext.createGain();
+    this.reverb.output.connect( this.masterGain );
+
+    //Create dry gain (no reverb). Connects to master gain.
     this.dryMixGain = this.audioContext.createGain();
     this.dryMixGain.connect( this.masterGain );
     this.dryMixGain.gain.value = .5;
 
+    //Create sub mix gain. Splits audio to reverb and dry mix.
     this.subMixGain = this.audioContext.createGain();
     this.subMixGain.connect( this.dryMixGain );
     this.subMixGain.connect( this.reverb.input );
 
-    this.reverb.output.connect( this.masterGain );
-
+    //Create compressor. Connects to speakers. Master gain connects to compressor, prevents over driving audio
     this.compressor = this.audioContext.createDynamicsCompressor();
     this.compressor.threshold.value = -20;
     this.compressor.knee.value = 30;
@@ -36,15 +44,15 @@ class Soundscape2 {
     // compressor.reduction.value = -20;
     this.compressor.attack.value = 0;
     this.compressor.release.value = 0.15;
-
-    this.masterGain.connect( this.compressor );
     this.compressor.connect( this.audioContext.destination );
 
+    //Set how often voices will be triggered.
     this.triggerInterval = this.beatDuration * 2;
     this.nextTrigger = 0;
 
     //create voices
     this.voiceMap = new Map();
+    //How many voices?
     this.voiceCount = 10;
     this.currentVoiceIndex = 0;
 
@@ -63,31 +71,41 @@ class Soundscape2 {
 
     }
 
+    //Not playing until start method is called.
     this.playing = false;
 
   }
 
+  //Begin playing soundscape.
   start() {
 
-    this.stop();
-
+    //now playing
     this.playing = true;
-    
-    let voice = this.voiceMap.get( this.currentVoiceIndex );
 
+    //Reset each voices paramters to default settings.
+    this.voiceMap.forEach( function( voice ) {
+
+      voice.reset();
+
+    } );
+
+    //Reconnect master gain to compressor
+    this.masterGain.connect( this.compressor );
+
+    //Trigger first sound
+    let voice = this.voiceMap.get( this.currentVoiceIndex );
     this.nextTriggerTime = this.audioContext.currentTime;
     voice.trigger( 1, this.nextTriggerTime );
     
+    //Setup interval to check if the next sheduled sound has played.
     this.interval = setInterval( () => {
 
+      //If next trigger has occurred, schedule the following trigger.
       if ( this.audioContext.currentTime > this.nextTriggerTime ) {
 
         this.currentVoiceIndex = ( this.currentVoiceIndex + 1 ) % 6;
-
-        this.nextTriggerTime += this.triggerInterval;
-
         voice = this.voiceMap.get( this.currentVoiceIndex );
-
+        this.nextTriggerTime += this.triggerInterval;
         voice.trigger( this.nextTriggerTime );
 
       }
@@ -96,6 +114,7 @@ class Soundscape2 {
 
   }
 
+  //End soundscape.
   stop() {
 
     this.playing = false;
@@ -113,6 +132,8 @@ class Soundscape2 {
     } );
 
     this.audioBufferPlayer.clearBuffers();
+
+    this.masterGain.disconnect( this.compressor );
 
   }
 

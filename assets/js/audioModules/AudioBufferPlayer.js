@@ -76,8 +76,6 @@ class AudioBufferPlayer {
 
     } ); 
 
-    console.log( this.bufferSourceMap )
-
   }
 
 }
