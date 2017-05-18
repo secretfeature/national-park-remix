@@ -7,8 +7,9 @@ Recent government National Park Service policy shifts risk conversion to private
 3. Copy contents of zip into assets/audio
 
 To add a soundscape
-1. Create a copy of one of the Soundscape###.js and SoundscapeVoice###.js in assets/js adding an unused id
+1. Create a copy of one of the Soundscape###.js and SoundscapeVoice###.js files in assets/js adding an unused id
 1. Create and entry in index.html with your unique id
 2. Add your own addEntry() call in the window's load handler in index.html following the convention with your own custom selections
+3. Select the audio files you wish to use and change Soundscape###.js and SoundscapeVoice###.js to create your own sound
 
 
