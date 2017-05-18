@@ -4,6 +4,16 @@
 <html>
   <head>
     <title>Remix The National Park Service</title>
+
+    <meta name="description" content="Recent government National Park Service policy shifts risk conversion to private land, relaxed environmental protection and inhumane hunting practices.The National Park Service hosts a library of public domain media that's free to download and repurpose. Lets discover the hidden rhythms and textures found in these recordings with JavaScript and the Web Audio API. We will transform the sounds of animals, natural phenomenon and park visitors into soundscapes that feature the parks' diversity and highlight the importance of wildlife conservation." />
+    <meta name="keywords" content="National Park, National Parks, Yellowstone, JavaScript, sound art, Web Audio API, interactive art" />
+    <meta property="og:type" content="website" /> 
+    <meta property="og:title" content="Remix The National Park Service" />     
+    <meta property="og:image" content="http://nationalparkremix.com/assets/images/logo.png"/>
+    <meta property="og:description" content="Recent government National Park Service policy shifts risk conversion to private land, relaxed environmental protection and inhumane hunting practices.The National Park Service hosts a library of public domain media that's free to download and repurpose. Lets discover the hidden rhythms and textures found in these recordings with JavaScript and the Web Audio API. We will transform the sounds of animals, natural phenomenon and park visitors into soundscapes that feature the parks' diversity and highlight the importance of wildlife conservation." />
+    <meta name="keywords" content="National Park, National Parks, Yellowstone, JavaScript, sound art, Web Audio API, interactive art" /> 
+    <meta property="og:url" content="http://nationalparkremix.com">
+
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
@@ -15,13 +25,31 @@
     <script src="assets/js/utils/AudioBufferLoader.js"></script>
     <script src="assets/js/audioModules/Reverb.js"></script>
 
-    <script src="assets/js/soundscape/main.js"></script>
+    <script src="assets/js/main.js"></script>
 
 
-    <script src="assets/js/soundscape/Soundscape1.js"></script>
-    <script src="assets/js/soundscape/Soundscape2.js"></script>
+    <script src="assets/js/ray-soundscape/Soundscape1.js"></script>
+    <script src="assets/js/ray-soundscape/Soundscape2.js"></script>
 
-    <script src="assets/js/soundscape/SoundscapeVoice1.js"></script>
+
+    <script src="assets/js/Soundscape001.js"></script>
+    <script src="assets/js/Soundscape022.js"></script>
+    <script src="assets/js/Soundscape003.js"></script>
+    <script src="assets/js/Soundscape007.js"></script>
+    <script src="assets/js/Soundscape009.js"></script>
+    <script src="assets/js/Soundscape05.js"></script>
+
+
+
+    <script src="assets/js/ray-soundscape/SoundscapeVoice1.js"></script>    
+
+    <script src="assets/js/SoundscapeVoice001.js"></script>
+    <script src="assets/js/SoundscapeVoice022.js"></script>
+    <script src="assets/js/SoundscapeVoice003.js"></script>
+    <script src="assets/js/SoundscapeVoice007.js"></script>
+    <script src="assets/js/SoundscapeVoice009.js"></script>
+    <script src="assets/js/SoundscapeVoice05.js"></script>
+
 
 
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,500,700" rel="stylesheet">
@@ -32,27 +60,82 @@
       window.addEventListener( "load", function( event ) {
 
         addEntry( {
-          title:"filter-loops-for-yellowstone-001",
+          title:"filter-loops-for-yellowstone-002",
           SoundscapeClass: Soundscape1,
           audio: [
-            "assets/audio/yell-YELLGrizzlyBearVocalizations20160520Android1.mp3",
-            "assets/audio/yell-YELLDawnChorus.mp3",
-            "assets/audio/yell-YELLCranes20150425T15MS.mp3",
-            "assets/audio/yell-ChorusFrogs.mp3",
-            "assets/audio/yell-DipperandGeeseFireholeRiver.mp3"
+            "assets/audio/yell-YELLSGYredsquirrel2004320.mp3",
+            "assets/audio/WolvesHowling.mp3"
           ]
         } );
 
-        addEntry( {
-          title:"filter-loops-for-yellowstone-002",
-          SoundscapeClass: Soundscape2,
+          addEntry( {
+          title:"my-sound-022",
+          SoundscapeClass: Soundscape022,
           audio: [
-            "assets/audio/yell-YELLSGYredsquirrel2004320.mp3",
-            "assets/audio/yell-YELLCoyotes150315.mp3"
+            "assets/audio/CastleGeyser.mp3",
+            "assets/audio/Warbling.mp3",
+            "assets/audio/Toads.mp3",
+            "assets/audio/ThunderandBirds.mp3",
+            "assets/audio/WolvesHowling.mp3"
+            
           ]
         } );
-      
+
+      addEntry( {
+          title:"my-sound-001",
+          SoundscapeClass: Soundscape001,
+          audio: [
+            "assets/audio/yell-030401GeyserHillStreamOffBoardwalkBackgroundGeyserRumblesAndWindBinaural0101.mp3",
+            "assets/audio/yell-YELLSpadefootToads20150520T14ms.mp3"
+          ]
+        } );
+
+      addEntry( {
+          title:"my-sound-05",
+          SoundscapeClass: Soundscape05,
+          audio: [
+            "assets/audio/yell-YELLBisonEating150313.mp3",
+            "assets/audio/yell-ChorusFrogs.mp3",
+            "assets/audio/yell-Thunderandbirds140704.mp3"
+          ]
+        } );
+
+      addEntry( {
+        title:"my-sound-003",
+        SoundscapeClass: Soundscape003,
+        audio: [
+          "assets/audio/yell-ChineseTours2016.mp3",
+          "assets/audio/yell-YELLBisonEating150313.mp3",
+          "assets/audio/yell-OldFaithful11162014.mp3",
+          "assets/audio/yell-NorrisPorcelainBasinFumarolesSmall.mp3",
+        ]
       } );
+
+      addEntry({
+        title: "number-007",
+        SoundscapeClass: Soundscape007,
+        audio: [
+          "assets/audio/yell-ElkBugle1.mp3",
+          "assets/audio/yell-YELLBerylSpring20150315T45ms013.mp3",
+          "assets/audio/yell-Thunderandbirds140704.mp3",
+          "assets/audio/yell-YellowstoneLakeSingsCommentary.mp3"
+        ]
+      });
+
+      addEntry( {
+        title:"my-sound-009",
+        SoundscapeClass: Soundscape009,
+        audio: [
+          "assets/audio/yell-YELLSGYredsquirrel2004320.mp3",
+          "assets/audio/yell-ChineseTours2016.mp3",
+          "assets/audio/yell-YELLChopKindling20160913T0011.mp3"
+        ]
+      } );
+
+    } );
+
+
+
 
     </script>
 
@@ -63,31 +146,15 @@
     </div>
     <div id="content">
         <div class="about">
+          <i>Collected soundscapes from <a href="https://twitter.com/rayreadyray">Ray McClure</a>'s workshop at <a href="https://grayareafestival.io" target="_blank">Gray Area Festival 2017</a>-</i><br><br>
           <h1>Remix The National Park Service</h1>
-          Recent National Park Service policy shifts risk conversion to private land, relaxed environmental protection and inhumane hunting practices.The National Park Service hosts a <a href="https://www.nps.gov/yell/learn/photosmultimedia/soundlibrary.htm">library of public domain media</a> that's free to download and repurpose. Lets discover the hidden rhythms and textures found in these recordings with JavaScript and the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API">Web Audio API</a>. We will transform the sounds of animals, natural phenomenon and park visitors into soundscapes that feature the parks' diversity and highlight the importance of wildlife conservation.
+	  Recent government National Park Service policy shifts risk conversion to private land, relaxed environmental protection and inhumane hunting practices.The National Park Service hosts a <a href="https://www.nps.gov/yell/learn/photosmultimedia/soundlibrary.htm">library of public domain media</a> that's free to download and repurpose. Lets discover the hidden rhythms and textures found in these recordings with JavaScript and the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API">Web Audio API</a>. We will transform the sounds of animals, natural phenomenon and park visitors into soundscapes that feature the parks' diversity and highlight the importance of wildlife conservation.
         </div>
 
-        <div class="entry" id="filter-loops-for-yellowstone-001">
-          <h2>Yellowstone Loops<br>Part 1</h2>
-          <h3>by <a href="https://twitter.com/rayreadyray">Ray McClure</a></h3>
-          <div class="credits">Featuring:
-              <ul>
-                <li>Grizzly Bear (vocalizations) by NPS/Dan Bergum</li>
-                <li>Sandhill Cranes by NPS &amp; MSU Acoustic Atlas/Jennifer Jerrett</li>
-                <li>Dawn Chorus by NPS/Jennifer Jerrett</li>
-                <li>Boreal Chorus Frogs by NPS/Neal Herbert</li>
-                <li>Dipper and Geese by NPS &amp; MSU Acoustic Atlas / Jennifer Jerrett</li>
-              </ul>
-          </div>
-          <div class="player">
-            <a href="#" class="play button" title="Play">Play</a>
-            <canvas class="waveform" width="200" height="40"></canvas>
-          </div>
-        </div>
-
+	
         <div class="entry" id="filter-loops-for-yellowstone-002">
           <h2>Chatter and Howl</h2>
-          <h3>by <a href="https://twitter.com/rayreadyray">Ray McClure</a></h3>
+          <h3>by Ray McClure</h3>
           <div class="credits">Featuring:
               <ul>
                 <li>Red Squirrel by NPS / Shan Burson</li>
@@ -100,7 +167,126 @@
           </div>
         </div>
 
+
+
+        <div class="entry" id="my-sound-001">
+          <h2>Untitled</h2>
+          <h3>by Alaric</a></h3>
+          <div class="credits">Featuring:
+              <ul>
+                <li>Soundscape - Geyser Hill by NPS/Peter Comley</li>
+                <li>Spadefoot Toad by NPS & MSU Acoustic Atlas/Jennifer Jerrett</li>
+              </ul>
+          </div>
+          <div class="player">
+            <a href="#" class="play button" title="Play">Play</a>
+            <canvas class="waveform" width="200" height="40"></canvas>
+          </div>
+        </div>
+
+
+        <div class="entry" id="my-sound-05">
+          <h2>Untitled</h2>
+          <h3>by Ali</h3>
+          <div class="credits">Featuring:
+              <ul>
+                <li>Bison Eating by NPS/Jennifer Jerrett</li>
+                <li>Boreal Chorus Frogs by NPS/Neal Herbert</li>
+                <li>Thunder by NPS/Jennifer Jerrett</li>
+              </ul>
+          </div>
+          <div class="player">
+            <a href="#" class="play button" title="Play">Play</a>
+            <canvas class="waveform" width="200" height="40"></canvas>
+          </div>
+        </div>
+
+        <div class="entry" id="my-sound-003">
+          <h2>Bird Pineapple / 🦅🦆🍍</h2>
+          <h3>by Aylan and Victoria</h3>
+          <div class="credits">Featuring:
+              <ul>
+                <li>Bison Eating by NPS/Jennifer Jerrett</li>
+                <li>Old Faithful by NPS/Jennifer Jerrett</li>
+                <li>Fumaroles (small) by NPS/Jennifer Jerrett</li>
+              </ul>
+          </div>
+          <div class="player">
+            <a href="#" class="play button" title="Play">Play</a>
+            <canvas class="waveform" width="200" height="40"></canvas>
+          </div>
+        </div>
+
+
+
+
+        <div class="entry" id="my-sound-022">
+          <h2>22</h2>
+          <h3>by Daniel Konhauser</h3>
+          <div class="credits">Featuring:
+              <ul>
+                <li>Castle Geyser by NPS/Jennifer Jerrett</li>
+                <li>Warbling Vireos by NPS/Jennifer Jerrett</li>
+                <li>Toads by NPS/Jennifer Jerrett</li>
+                 <li>Wolves by NPS & MSU Acoustic Atlas/Jennifer Jerrett</li>
+                <li>Thunder by NPS/Jennifer Jerrett</li>
+              </ul>
+          </div>
+          <div class="player">
+            <a href="#" class="play button" title="Play">Play</a>
+            <canvas class="waveform" width="200" height="40"></canvas>
+          </div>
+        </div>
+
+
+        <div class="entry" id="my-sound-009">
+          <h2>Funky Ass Squirrels</h2>
+          <h3>by <a href="https://twitter.com/myspacebooktube">Taurin Barrera</a></h3>
+          <div class="credits">Featuring:
+              <ul>
+                <li>Red Squirrel by NPS / Shan Burson</li>
+                <li>Chopping Kindling by NPS &amp; MSU Acoustic Atlas/Jennifer Jerrett</li>
+              </ul>
+          </div>
+          <div class="player">
+            <a href="#" class="play button" title="Play">Play</a>
+            <canvas class="waveform" width="200" height="40"></canvas>
+          </div>
+        </div>
+
+
+        <div class="entry" id="number-007">
+          <h2>Untitled</h2>
+          <h3>by Rory</h3>
+          <div class="credits">Featuring:
+              <ul>
+                <li>Elk Bugle One by NPS/Neal Herbert</li>
+                <li>Beryl Spring by NPS & MSU Acoustic Atlas/Jennifer Jerrett</li>
+                <li>Thunder by NPS/Jennifer Jerrett</li>
+                <li>Singing Lake by NPS/Jennifer Jerrett</li>
+              </ul>
+          </div>
+          <div class="player">
+            <a href="#" class="play button" title="Play">Play</a>
+            <canvas class="waveform" width="200" height="40"></canvas>
+          </div>
+        </div>
+
     </div>
 
+	<br>
+	<br>
+	  <h2><a href="https://www.nps.gov/getinvolved/donate.htm" target="_blank">Donate to the National Parks Service</a></h2>	
+	<br>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-17535530-5', 'auto');
+  ga('send', 'pageview');
+
+</script>
   </body>
 </html>

@@ -1,216 +1,433 @@
 
 
+
+
 body {
+
   margin: 0px;
+
   background-color: #191613;
+
   font-family: 'Roboto Mono', monospace;
+
   color: #a59880;
+
   text-align: center;
+
   background-position: center;
+
   background-repeat: no-repeat;
+
   background-attachment: fixed;
 
+
+
 }
+
+.about i{
+font-weight:700;
+font-size:.8em;
+}
+
 
 h1{
+
   font-size: 2em;
+
   line-height: 1em;
+
   color: #95d61c;
+
   font-weight: 700;
+
   letter-spacing: .1em;
+
   margin-top: 0px;
+
 }
+
+
 
 #content{
+
   /*background-color: hsla(1, 5%, 5%, 0.7);*/
+
   padding-top: 0px;
+
   padding: 20px;
+
   /*height: 100vh;*/
+
   width: 100%;
+
   max-width: 700px;
+
   min-width: 700px;
+
   display: inline-block;
+
   text-align: left;
+
 }
+
+
 
 .entry p{
+
   font-size: 1em;
+
   display: inline-block;
+
   width: 50%;
+
 }
+
+
+
 
 .entry{
+
   margin-top:20px;
+
   width:48%;
-  float: left;
+  float:left;
+
 }
 
+
 .entry h2{
+
   margin: 0px;
+
   color:#dc6d2a;
+
 }
+
+
+
 
 
 .entry h3{
+
   margin: 0px;
+
 }
+
+
 
 .credits{
+
   display: inline-block;
+
   width: 50%;
+
   font-size: .75em;
+
   margin-top: 10px;
+
 }
+
+
 
 .credits ul{
+
   list-style: none;
+
   padding: 0px;
+
 }
+
+
 
 a, a:active,a:visited{
+
   color: #dcbf2a;
+
   text-decoration: none;
+
 }
+
+
 
 a:hover{
+
   text-decoration: underline;
+
 }
 
+
+
 ul li{
+
   margin-top: 3px;
+
 }
+
+
 
 /*
 
 
+
+
+
 .status-button{
+
   font-size:50px;
+
   font-weight: 700;
+
   display: block;
+
   width:100%;
+
   position: absolute;
+
   top:50%;
+
   text-align: center;
+
   margin-top: -25px;
+
 }
+
+
 
 .starting {
+
   display: none;
+
   color:#933;
+
   cursor: pointer;
+
 }
+
+
 
 .starting::after { 
+
     content: "START";
+
 }
+
+
 
 .loading {
+
   color:#CCC;
+
   cursor: default;
+
 }
+
+
 
 .loading::after { 
+
     content: "LOADING AUDIO...";
+
 }
+
+
 
 .ready {
+
   color:#933;
+
   cursor: pointer;
+
 }
+
+
 
 .ready::after { 
+
     content: "PLAY";
+
 }*/
 
+
+
 .player{
+
   height: 50px;
+
 }
+
+
 
 .button {
+
   display: inline-block;
+
   position: relative;
+
   width: 40px;
+
   height: 40px;
+
   border-radius: 20px;
+
   background-color: #989880;
+
   color: white;    
+
   float: left;
+
   /* Hide the text 'play', which is present in the HTML document for accessibility */
+
   font-size: 0;
+
 }
+
+
 
 .button.loading{
+
   cursor: default;
+
   opacity: .5;
+
   pointer-events: none;
+
 }
+
+
 
 .button::before {  
+
   content: "►";
+
   top: 7px;
+
   left: 12px;
+
   display: block;
+
   position: absolute;
+
   font-size:10px;
+
   font-family: arial, helvetica;
+
 }
+
+
 
 .button.playing::before {
+
   content: "❚❚";
+
   top: 5px;
+
   left: 11px;
+
 }
+
+
 
 .play.button::before {
+
   font-size: 22px;
+
   color:#fff;
+
 }
 
+
+
 .waveform{
+
   height: 40px;
+
   float: left;
+
   width: 200px;
+
   /*background-color: aquamarine;*/
+
   margin-left: 20px;
+
 }
+
+
+
 
 
 @media (max-width: 580px) {
 
+
+
   body{
+
     margin: 10px;
+
   }
 
+
+
   #content{
+
     /*background-color: hsla(1, 5%, 5%, 0.7);*/
+
     padding-top: 0px;
+
     padding: 0px;
+
     margin: 0px;
+
     /*height: 100vh;*/
+
     width: 100%;
+
     max-width: 100%;
+
     min-width: 100%;
+
     display: inline-block;
+
     text-align: left;
+
   }
+
+
 
 
   .entry{
+
     margin-top:20px;
+
+    float:left;
+	
     width:100%;
-    float: left;
+
   }
 
+
+
   .credits{
+
     width: 100%;
+
   }
+
+
+
 
 
   .button.playing::before {
+
     font-size: 16px;
+
     top: 6px;
+
     left: 7px;
+
   }
+
+
+
 
 
 }
